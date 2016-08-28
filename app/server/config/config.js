@@ -9,7 +9,7 @@ module.exports = config;
 
 function getEnv(variable) {
 	if (!process.env.hasOwnProperty(variable)) {
-		throw new Error('No environment variable set for ' + variable);
+		console.warn(`No environment variable set for ${variable}`);
 	}
 	return process.env[variable];
 }
