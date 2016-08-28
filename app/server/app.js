@@ -17,6 +17,14 @@ app.set('port', config.PORT);
 app.use(express.static('./app/client'));
 app.use(express.static('./bower_components'));
 
+app.get('/api', (req, res) => {
+    var number = Math.random();
+    for (var i = 1; i < 500; i++) {
+        number = Math.tan(number) + Math.random() * i;
+    }
+    res.json(number);
+});
+
 server.listen(app.get('port'), () => {
 	console.log('Express running on port', app.get('port'));
 });
