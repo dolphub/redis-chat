@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "script"    : "app/server/app.js",
+    "script"    : "./app/server/app.js",
     "instances" : "max",
     "exec_mode" : "cluster"
   }]
