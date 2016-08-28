@@ -28,7 +28,7 @@ function onUserLogin(username) {
 	}
 	this.username = username;
 	users[this.username] = this;
-	console.log(`${this.username} has logged in.`);
+	console.log(`${this.username} has logged into the server.`);
 	this.broadcast.emit('user login', this.username);
 }
 
