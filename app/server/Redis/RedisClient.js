@@ -1,5 +1,5 @@
 'use strict';
-const config = require(base`./Config`);
+const config = require(base`./config`);
 const redis = require('redis');
 const url = require('url');
 
