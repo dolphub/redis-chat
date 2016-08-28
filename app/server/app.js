@@ -20,8 +20,8 @@ app.use(express.static('./bower_components'));
 app.get('/api', (req, res) => {
     var number = Math.random();
 
-    for (var i = 1; i < 500; i++) {
-        number = (Math.tan(Math.tan(number) + Math.random() * i) * number * 100000) / 4.23424;
+    for (var i = 1; i < 11500; i++) {
+        number = Math.tan((Math.tan(number) + Math.random() * i * 192874129847) / 4.23424);
     }
     res.json(number);
 });
