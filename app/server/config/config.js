@@ -3,7 +3,7 @@ require('dotenv').config();
 
 var config = {
 	PORT: getEnv('PORT') || 3001,
-	REDISURL: getEnv('REDISURL') || 'localhost:6379'
+	REDISURL: getEnv('REDISURL') || 'user:auth123@localhost:6379'
 };
 module.exports = config;
 
