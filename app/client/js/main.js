@@ -62,8 +62,6 @@ app.controller('chatCtrl', ['$scope', '$timeout', '$interval', 'socket', 'prompt
         $scope.update = !$scope.update;
     }, 5000);
 
-
-
     /**
      * Prompts the user for their username, and ensures
      * they have a username before allowing to participate
@@ -75,7 +73,7 @@ app.controller('chatCtrl', ['$scope', '$timeout', '$interval', 'socket', 'prompt
 			"input": true,
 			"label": "Enter a Username",
 			"value": ""
-		}).then(function(result){
+		}).then(function(result) {
 			$scope.username = result;
 			socket.emit('user login', result);
 			$scope.addMsg({user: 'Server', payload: 'Welcome to RedisChat ' + result + '!', ts: Date.now()});

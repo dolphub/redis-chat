@@ -1,5 +1,5 @@
 'use strict';
-require('dotenv').config();
+require('dotenv').config({silent: true});
 
 var config = {
 	PORT: getEnv('PORT') || 3001,
