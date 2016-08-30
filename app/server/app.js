@@ -10,6 +10,7 @@ let config = require('./config');
 let app = express();
 let server = http.createServer(app);
 let io = require('./SocketServer')(server);
+io.init(server);
 
 let redisClient = require('./Redis');
 
