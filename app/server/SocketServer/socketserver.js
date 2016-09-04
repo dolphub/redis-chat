@@ -1,7 +1,4 @@
 'use strict';
-
-const session = require("express-session");
-
 const Store = require(base`Redis`);
 const Redis = require(base`Redis`);
 
