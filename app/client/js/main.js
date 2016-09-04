@@ -55,7 +55,7 @@ app.controller('chatCtrl', ['$scope', '$timeout', '$interval', 'socket', 'prompt
 		// Socket service not an angualr module, not on the digest cycle
 		$timeout(function() {
 			$scope.msgQueue.push(msg);
-		}, 0);a
+		}, 0);
     }
 
 	$interval(function() {
