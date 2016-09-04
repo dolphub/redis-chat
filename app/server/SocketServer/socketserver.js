@@ -3,9 +3,10 @@
 const session = require("express-session");
 
 const Store = require(base`Redis`);
-const pub = require(base`Redis`);
-const sub = require(base`Redis`);
+const Redis = require(base`Redis`);
 
+let sub = Redis.getConnection();
+let pub = Redis.getConnection();
 var io;
 var users = {};
 module.exports = function(server) {
@@ -31,8 +32,13 @@ module.exports = function(server) {
 sub.on('message', onRedisMessage.bind(this));
 sub.subscribe('chat::message');
 
-function onRedisMessage(channel, message) => {
-	io.emit('chat message', message);
+sub.on('subscribe', (channel, count) => {
+	console.log(channel, count);
+});
+
+function onRedisMessage(channel, message) {
+	console.log(`Socket::onRedisMessage() - ${message}`);
+	io.emit('chat message', JSON.parse(message));
 }
 
 function onDisconnection() {
@@ -59,6 +65,6 @@ function onChatMessage(message) {
         user: this.username,
         payload: message
     };
-    pub.publish('chat::message', msgObj);
+    pub.publish('chat::message', JSON.stringify(msgObj));
     console.log(`Socket::onChatMessage() - ${this.username}: ${msgObj.payload}`);
 }
