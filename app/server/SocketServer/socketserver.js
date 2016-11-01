@@ -1,13 +1,34 @@
 'use strict';
 
-const SocketIO = require('socket.io');
+const session = require("express-session");
+
+const Store = require(base`Redis`);
 const pub = require(base`Redis`);
 const sub = require(base`Redis`);
+
+var sessionMiddleware = session({
+	store: Store,
+	secret: 'redis chat'
+});
 
 var io;
 var users = {};
 module.exports = function(server) {
-	io = SocketIO.listen(server);
+	if (!server) {
+		throw new Error('SocketServer::constructor() - No server object provided');
+	}
+	if (!server && io) {
+		return io;
+	}
+	// Initialize SocketIO
+	io = require('socket.io')(server);
+
+	// Set redis store middleware
+	io.use((socket, next) => {
+		sessionMiddleware(socket.request, socket.request.res, next);
+	});
+	io.use(sessionMiddleware);
+
 	io.on('connection', function(socket) {
 		console.log('New connection');
 		socket.on('disconnect', onDisconnection.bind(socket));
@@ -16,6 +37,8 @@ module.exports = function(server) {
 	});
 	return io;
 };
+
+
 
 function onDisconnection() {
 	console.log(`${this.username} disconnected`);
