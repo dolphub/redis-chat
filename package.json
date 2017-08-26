@@ -4,7 +4,7 @@
   "description": "Socket.io, Redis, NodeJS Chat",
   "main": "index.js",
   "scripts": {
-    "start": "node app/server/index.js",
+    "start": "cd app && node server/index.js",
     "preinstall": "cd app && npm install",
     "postinstall": "cd app && bower install"
   },
