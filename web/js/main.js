@@ -1,8 +1,13 @@
 var app = angular.module('nodeChat', ['ui.bootstrap','cgPrompt']);
 
+// TODO: Able to forward socket connections through nginx
+const SOCKET_PORT = 3000;
+
 app.factory('socket', function() {
-	var socket = io.connect();
-	return socket;
+	if (io) {
+		var socket = io.connect(`http://${window.location.hostname}:${SOCKET_PORT}`);
+		return socket;
+	}
 });
 
 app.controller('chatCtrl', ['$scope', '$timeout', '$interval', 'socket', 'prompt', function($scope, $timeout, $interval, socket, prompt) {
