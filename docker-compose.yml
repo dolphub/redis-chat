@@ -1,0 +1,12 @@
+version: '3'
+services:
+  server:
+    build: app/
+    ports:
+      - "3001:3001"
+    # links:
+    #   - redis
+  # redis:
+  #   image: "redis:alpine"
+  #   ports:
+  #     - "6379:6379"

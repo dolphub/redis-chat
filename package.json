@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app/server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower cache clean && bower install",
-    "deploy": "pm2 startOrRestart ./cluster-deployment.json"
+    "preinstall": "cd app && npm install"    
   },
   "repository": {
     "type": "git",
@@ -18,14 +16,5 @@
   "bugs": {
     "url": "https://github.com/dolphub/redis-chat/issues"
   },
-  "homepage": "https://github.com/dolphub/redis-chat#readme",
-  "dependencies": {
-    "dotenv": "^2.0.0",
-    "express": "^4.14.0",
-    "redis": "^2.6.2",
-    "socket.io": "^1.4.8"
-  },
-  "devDependencies": {
-    "bower": "^1.7.9"
-  }
+  "homepage": "https://github.com/dolphub/redis-chat#readme"
 }
