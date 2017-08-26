@@ -1,6 +1,6 @@
 version: '3'
 services:
-  server:
+  app:
     build: app/
     ports:
       - "3001:3001"
@@ -9,7 +9,7 @@ services:
     environment:
       - PORT=3001
       - REDIS_PORT=6379
-      - REDIS_HOST=redis
+      - REDIS_HOST=redis # Docker dns provides redis host to redis container
   redis:
     image: "redis:alpine"
     ports:

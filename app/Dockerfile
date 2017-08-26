@@ -3,7 +3,10 @@ FROM node:alpine
 
 # Install git
 # TODO: Remove this, only required for bower
-RUN apk add --no-cache bash git openssh
+RUN apk add --no-cache git
+
+# Will replace bower eventually
+RUN npm install webpack -g
 
 # Install nodemon
 RUN npm install -g nodemon
