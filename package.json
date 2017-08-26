@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app/server/index.js",
-    "preinstall": "cd app && npm install"    
+    "preinstall": "cd app && npm install",
+    "postinstall": "cd app && bower install"
   },
   "repository": {
     "type": "git",

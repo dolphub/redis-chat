@@ -4,8 +4,7 @@
   "description": "Socket.io, Redis, NodeJS Chat",
   "main": "index.js",
   "scripts": {
-    "start": "node app/server/index.js",
-    "postinstall": "# bower install"
+    "start": "node app/server/index.js"
   },
   "dependencies": {
     "dotenv": "^2.0.0",
