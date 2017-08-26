@@ -8,7 +8,6 @@ module.exports = {
 };
 
 function getConnection() {
-    console.log(config.REDIS_URI);
     let client = redis.createClient(config.REDIS_PORT, config.REDIS_HOST);
     // if (redisConfig.auth !== null) {
     //     client.auth(redisConfig.auth);

@@ -3,7 +3,12 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-require('dotenv').config();
+
+try {
+    require('dotenv').config({silent: true});
+} catch (e) {
+    console.log('No environment variable found');
+}
 
 global.base = (literals) => `${__dirname}/${literals}`;
 
@@ -15,7 +20,7 @@ let io = require('./SocketServer')(server);
 let redisClient = require('./Redis');
 
 app.set('port', config.PORT);
-app.use(express.static('./app/client'));
+app.use(express.static('./client'));
 app.use(express.static('./bower_components'));
 
 app.get('/api', (req, res) => {
