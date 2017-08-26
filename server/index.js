@@ -3,7 +3,15 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-require('dotenv').config({silent: true});
+
+// TODO: Install response time
+// https://github.com/expressjs/response-time
+
+try {
+    require('dotenv').config({silent: true});
+} catch (e) {
+    console.log('No environment variable found');
+}
 
 global.base = (literals) => `${__dirname}/${literals}`;
 
@@ -24,6 +32,7 @@ app.get('/api', (req, res) => {
         number = Math.tan((Math.tan(number) + Math.random() * i * 192874129847124) / 4.23424);
     }
     res.json(number);
+    console.log(number);
 });
 
 server.listen(app.get('port'), () => {
