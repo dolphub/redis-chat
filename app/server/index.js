@@ -3,12 +3,7 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-
-try {
-    require('dotenv').config({silent: true});
-} catch (e) {
-    console.log('No environment variable found');
-}
+require('dotenv').config({silent: true});
 
 global.base = (literals) => `${__dirname}/${literals}`;
 

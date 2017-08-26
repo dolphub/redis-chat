@@ -1,5 +1,5 @@
 # Set the base image to Ubuntu
-FROM    node:alpine
+FROM node:alpine
 
 # Install git
 # TODO: Remove this, only required for bower
