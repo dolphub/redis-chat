@@ -14,3 +14,10 @@ services:
     image: "redis:alpine"
     ports:
       - "6379:6379"
+  # armv7 
+  #redis:
+  #  image: "mangoraft/redis-arm"
+  #  environment:
+  #    - REDIS_PASS=**None**
+  #  ports:
+  #    - "6379:6379"

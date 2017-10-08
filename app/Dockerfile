@@ -1,6 +1,9 @@
 # Set the base image to Ubuntu
 FROM node:alpine
 
+# armv7 container
+# FROM ckingdev/alpine-arm-node
+
 # Install git
 # TODO: Remove this, only required for bower
 RUN apk add --no-cache bash git openssh
