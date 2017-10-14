@@ -5,7 +5,11 @@ const SOCKET_PORT = 3000;
 
 app.factory('socket', function() {
 	if (io) {
+<<<<<<< HEAD
 		var socket = io.connect(`http://${window.location.hostname}:${SOCKET_PORT}`);
+=======
+		var socket = io.connect();
+>>>>>>> Dockerized front-end for stand alone web server
 		return socket;
 	}
 });

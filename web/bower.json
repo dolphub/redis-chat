@@ -11,6 +11,7 @@
     "angular": "angularjs#^1.5.8",
     "angular-ui": "^0.4.0",
     "angular-prompt": "^1.2.0",
-    "moment": "^2.14.1"
+    "moment": "^2.14.1",
+    "socket.io-client": "^2.0.3"
   }
 }
