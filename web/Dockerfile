@@ -10,7 +10,6 @@ RUN mkdir -p /run/nginx \
   && mkdir /src/css
 
 RUN npm install -g bower
-
 ADD bower.json /tmp/bower.json
 
 # Install TODO: Remove bower
