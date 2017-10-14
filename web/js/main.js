@@ -4,18 +4,8 @@ var app = angular.module('nodeChat', ['ui.bootstrap','cgPrompt']);
 const SOCKET_PORT = 3000;
 
 app.factory('socket', function() {
-	if (io) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		var socket = io.connect(`http://${window.location.hostname}:${SOCKET_PORT}`);
-=======
-		var socket = io.connect();
->>>>>>> Dockerized front-end for stand alone web server
-=======
-		var socket = io.connect(`http://${window.location.hostname}:${SOCKET_PORT}`);
->>>>>>> All components separated into docker containers and hooked up
 		return socket;
-	}
 });
 
 app.controller('chatCtrl', ['$scope', '$timeout', '$interval', 'socket', 'prompt', function($scope, $timeout, $interval, socket, prompt) {
