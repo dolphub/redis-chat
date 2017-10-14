@@ -3,36 +3,17 @@ services:
   web:
     build: web/
     ports:
-      - "3001:3001"
-    links:
-      - "redis"
-    environment:
-      - PORT=3001
-      - REDIS_PORT=6379
-      - REDIS_HOST=redis
-  redis:
-    image: "redis:alpine"
-    ports:
-      - "6379:6379"
-  # armv7
-  #redis:
-  #  image: "mangoraft/redis-arm"
-  #  environment:
-  #    - REDIS_PASS=**None**
-  #  ports:
-  #    - "6379:6379"
-      # - 3001:80
+      - 3001:80
+    depends_on:
+      - server
   server:
-    build: app/
-    volumes:
-      - ./app/client:/src/client
-      - ./app/server:/src/server
+    build: server/
     ports:
-      - "3001:3001"
+      - "3000:80"
     links:
       - "redis"
     environment:
-      - PORT=3001
+      - PORT=80
       - REDIS_PORT=6379
       - REDIS_HOST=redis
     depends_on:
