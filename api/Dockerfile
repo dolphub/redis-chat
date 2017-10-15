@@ -1,5 +1,6 @@
 # Set the base image to Ubuntu
 FROM    node:alpine
+# FROM ckingdev/alpine-arm-node
 
 # Install nodemon
 RUN npm install -g nodemon
