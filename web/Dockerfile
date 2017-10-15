@@ -1,5 +1,6 @@
 # Set the base image to Ubuntu
 FROM node:alpine
+# FROM ckingdev/alpine-arm-node
 
 RUN apk add --update nginx bash git openssh && \
   rm -rf /var/cache/apk/*

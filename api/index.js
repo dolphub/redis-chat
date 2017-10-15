@@ -3,6 +3,9 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
+const os = require('os');
+
+const HOSTNAME = os.hostname();
 
 // TODO: Install response time
 // https://github.com/expressjs/response-time
@@ -31,8 +34,8 @@ app.get('/api', (req, res) => {
     for (var i = 1; i < 20000; i++) {
         number = Math.tan((Math.tan(number) + Math.random() * i * 192874129847124) / 4.23424);
     }
-    res.json(number);
-    console.log(number);
+    res.json(`${HOSTNAME}: ${number}`);
+    console.log(`${HOSTNAME}: ${number}`);
 });
 
 server.listen(app.get('port'), () => {
