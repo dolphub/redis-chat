@@ -41,8 +41,12 @@ docker push <ip>:5000/redis_web
 Copy the token string and use to attach other nodes to this server
 
 # TODO
-### Running this app in cluster seems to not sticky session sockets
+* Running this app in cluster seems to not sticky session sockets
+* Add response timing to requests for metrics
+* * Possibly look into prometheus
+* Look into portainer https://portainer.io
+* * Anything that has any kind of visual performance metrics
 
 # Architecture
 
-All Dockerfiles have their respective armv7 architecture next to base image
+All Dockerfiles have their respective armv7 architecture next to base image if running this on an arm processor
