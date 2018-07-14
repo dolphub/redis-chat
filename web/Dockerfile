@@ -24,6 +24,6 @@ COPY index.html /src/
 ADD js /src/js/
 ADD css /src/css/
 
-EXPOSE 80
+EXPOSE 3001
 
 CMD ["nginx", "-g", "daemon off;"]
