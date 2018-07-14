@@ -2,28 +2,18 @@ version: '3'
 services:
   web:
     build: web/
-    # image: localhost:5000/redischat_web
+    image: dolphub/redischat_web
     ports:
       - 3001:3001
-    depends_on:
-      - api
   api:
     build: api/
+    image: dolphub/redischat_api
     ports:
       - "3000:3000"
     environment:
       - PORT=3000
       - REDIS_PORT=6379
       - REDIS_HOST=redis
-    depends_on:
-      - redis
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
   redis:
     image: redis:latest
     ports:
