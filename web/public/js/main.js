@@ -4,7 +4,7 @@ var app = angular.module('nodeChat', ['ui.bootstrap','cgPrompt']);
 const SOCKET_PORT = 3000;
 
 app.factory('socket', function() {
-		var socket = io.connect(`http://${window.location.hostname}:${SOCKET_PORT}`);
+		var socket = io.connect(`${window.location.origin}:${SOCKET_PORT}`);
 		return socket;
 });
 

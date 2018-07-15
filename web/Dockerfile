@@ -2,28 +2,22 @@
 FROM node:alpine
 # FROM ckingdev/alpine-arm-node
 
-RUN apk add --update nginx bash git openssh && \
-  rm -rf /var/cache/apk/*
+# RUN apk add --update nginx bash git openssh && \
+#   rm -rf /var/cache/apk/*
 
-RUN mkdir -p /run/nginx \
-  && mkdir -p /src \
-  && mkdir /src/js \
-  && mkdir /src/css
+RUN mkdir -p /app
 
-RUN npm install -g bower
-ADD bower.json /tmp/bower.json
 
-# Install TODO: Remove bower
-RUN cd /tmp && bower install --allow-root || true
-COPY default.conf /etc/nginx/conf.d/
-RUN cp -r /tmp/bower_components /src
+RUN npm install -g yarn
 
-# COPY nginx/nginx.conf /etc/nginx/nginx.conf
-# COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY index.html /src/
-ADD js /src/js/
-ADD css /src/css/
+COPY index.js /app
+COPY package.json /app
+COPY yarn.lock /app
+COPY public/ /app/public
+
+WORKDIR /app
+RUN yarn install
 
 EXPOSE 3001
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["yarn", "start"]

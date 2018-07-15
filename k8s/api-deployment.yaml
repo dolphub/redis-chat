@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: redischat-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redischat-api
+    spec:
+      containers:
+      - name: redischat-api
+        image: dolphub/redischat-api:0.1.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: REDIS_PORT
+          value: "6379"
+
+        - name: REDIS_HOST
+          value: "redis-master"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: redischat-api

@@ -1,6 +1,6 @@
 DOCKER_BIN ?= `which docker`
 DOCKER_COMPOSE ?= `which docker-compose`
-TAG ?= "{{ domain }}/{{ appname }}:1.1.0"
+TAG ?= "dolphub/{{ appname }}:1.1.0"
 
 .PHONY: build
 build:

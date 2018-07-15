@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "Socket.io, Redis, NodeJS Chat",
   "main": "index.js",
-  "scripts": {
-    "start": "node app/server/index.js",
-    "preinstall": "cd app && npm install",
-    "postinstall": "cd app && bower install"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dolphub/redis-chat.git"
