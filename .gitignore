@@ -42,5 +42,4 @@ package-lock.json
 
 cert.yaml
 issuer.yaml
-ingress.yaml
 @bower_components

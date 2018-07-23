@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: redischat-ingress
+  annotations:
+    nginx.org/websocket-services: "redischat-api"
+spec:
+  rules:
+  - host: dev.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: redischat-ui
+          servicePort: 3001
+      - path: /ws
+        backend:
+          serviceName: redischat-api
+          servicePort: 3000
