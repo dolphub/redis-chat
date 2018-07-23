@@ -1,10 +1,9 @@
 var app = angular.module('nodeChat', ['ui.bootstrap','cgPrompt']);
 
-// TODO: Able to forward socket connections through nginx
-const SOCKET_PORT = 3000;
+// TODO: Able to forward socket connections through ngin
 
 app.factory('socket', function() {
-		var socket = io.connect(`${window.location.origin}:${SOCKET_PORT}`);
+		var socket = io.connect(`${window.location.origin}/ws`);
 		return socket;
 });
 
