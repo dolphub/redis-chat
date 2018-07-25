@@ -1,6 +1,6 @@
 DOCKER_BIN ?= `which docker`
 DOCKER_COMPOSE ?= `which docker-compose`
-TAG ?= "dolphub/redischat-api:0.1.0"
+TAG ?= "dolphub/redischat-api:0.1.2"
 
 .PHONY: build
 build:

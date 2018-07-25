@@ -19,7 +19,7 @@ ADD . /src/
 # Define working directory
 WORKDIR /src
 
-EXPOSE 3001
+EXPOSE 3000
 
 # Run app using nodemon
 CMD ["nodemon", "index.js"]
