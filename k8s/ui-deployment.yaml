@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: redischat-ui
-        image: dolphub/redischat-ui:0.1.3
+        image: dolphub/redischat-ui:0.1.4
         ports:
         - containerPort: 3001
         env:

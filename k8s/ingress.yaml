@@ -25,4 +25,9 @@ spec:
       - path: /ws
         backend:
           serviceName: api
+          servicePort: 3002
+      - path: /api
+        backend:
+          serviceName: api
           servicePort: 3000
+      

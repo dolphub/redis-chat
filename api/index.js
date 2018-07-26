@@ -22,7 +22,7 @@ let config = require('./config');
 let app = express();
 let server = http.createServer(app);
 let io = require('./SocketServer')();
-io.listen(3002)
+io.listen(config.SOCKET_PORT);
 
 app.set('port', config.PORT);
 app.use(express.static('./client'));
