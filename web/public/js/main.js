@@ -3,7 +3,7 @@ var app = angular.module('nodeChat', ['ui.bootstrap', 'cgPrompt']);
 // TODO: Able to forward socket connections through ngin
 
 app.factory('socket', function () {
-	var socket = io.connect(`localhost:3002`);
+	var socket = io.connect(`${location.protocol+'//'+location.hostname}:3002`);
 	return socket;
 });
 
@@ -33,26 +33,22 @@ app.controller('chatCtrl', ['$scope', '$timeout', '$interval', 'socket', 'prompt
 	});
 
 	// New user has logged in
-	socket.on('user login', function (usr) {
-		$scope.addMsg(usr + ' has joined the channel.');
-	});
+	// socket.on('user login', function (usr) {
+	// 	$scope.addMsg(usr + ' has joined the channel.');
+	// });
 
 	// Private message
-	socket.on('whisper message', function (msg, usr) {
-		$scope.addMsg('[' + usr + '] whispers: ' + msg);
-	});
+	// socket.on('whisper message', function (msg, usr) {
+	// 	$scope.addMsg('[' + usr + '] whispers: ' + msg);
+	// });
 
-	// User has left the channel
-	socket.on('user disconnected', function (usr) {
-		$scope.addMsg(usr + ' has disconnected.');
-	});
 
 	/**
 	 * @param {string} Message to put into the messageQueue
 	 * Adds a message to the message model
 	 */
 	$scope.addMsg = function (msg) {
-		msgObj = JSON.parse(msg);
+		msgObj = typeof msg === "object" ? msg : JSON.parse(msg);
 		msgObj.ts = moment(Date.now());
 		// Socket service not an angualr module, not on the digest cycle
 		$timeout(function () {
