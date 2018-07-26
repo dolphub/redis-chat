@@ -3,7 +3,7 @@ var app = angular.module('nodeChat', ['ui.bootstrap', 'cgPrompt']);
 // TODO: Able to forward socket connections through ngin
 
 app.factory('socket', function () {
-	var socket = io.connect(`${location.protocol+'//'+location.hostname}:3002`);
+	var socket = io.connect(`${location.protocol+'//'+location.hostname}/ws`);
 	return socket;
 });
 
