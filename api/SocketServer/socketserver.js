@@ -1,21 +1,14 @@
 'use strict';
-const Store = require(base`Redis`);
-const Redis = require(base`Redis`);
-
-let sub = Redis.getConnection();
-let pub = Redis.getConnection();
 var io;
 var users = {};
-module.exports = function(server) {
-    if (!server && io) {
-        return io;
-    }
-    if (!server) {
-        throw new Error('SocketServer::constructor() - No server object provided');
-    }
+const config = require('../config');
+const os = require('os');
+module.exports = () => {
 
     // Initialize SocketIO
-    io = require('socket.io')(server);
+    io = require('socket.io')();
+    const redisAdapter = require('socket.io-redis');
+    io.adapter(redisAdapter({ host: config.REDIS_HOST, port: config.REDIS_PORT }));
 
     io.on('connection', function(socket) {
         console.log('New connection');
@@ -25,18 +18,6 @@ module.exports = function(server) {
     });
     return io;
 };
-
-sub.on('message', onRedisMessage.bind(this));
-sub.subscribe('chat::message');
-
-sub.on('subscribe', (channel, count) => {
-	console.log(channel, count);
-});
-
-function onRedisMessage(channel, message) {
-	console.log(`Socket::onRedisMessage() - ${message}`);
-	io.emit('chat message', JSON.parse(message));
-}
 
 function onDisconnection() {
     console.log(`${this.username} disconnected`);
@@ -59,9 +40,10 @@ function onChatMessage(message) {
         return;
     }
     var msgObj = {
+        hostname: os.hostname(),
         user: this.username,
         payload: message
     };
-    pub.publish('chat::message', JSON.stringify(msgObj));
-    console.log(`Socket::onChatMessage() - ${this.username}: ${msgObj.payload}`);
+    io.emit('chat::message', JSON.stringify(msgObj));
+    console.log(`Socket::onChatMessage() - ${this.hostname}: ${msgObj.payload}`);
 }
